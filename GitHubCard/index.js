@@ -1,4 +1,6 @@
+import axios from 'axios';
 /*
+
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
@@ -29,6 +31,21 @@
 */
 
 const followersArray = [];
+
+function gitMaker(object) {
+  const card = document.createElement("div");
+  const userImg = document.createElement("img");
+  const cardInfo = document.createElement("div");
+  const Name = document.createElement("h3");
+  const username = document.createElement("p");
+  const location = document.createElement("p");
+  const profile = document.createElement("p");
+  const href = document.createElement("a");
+  const followers = document.createElement("p");
+  const following = document.createElement("p");
+  const bio = document.createElement("p");
+
+}
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
