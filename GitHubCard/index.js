@@ -32,11 +32,11 @@ import axios from 'axios';
 
 const followersArray = [];
 
-function gitMaker(object) {
+function gitMaker(obj) {
   const card = document.createElement("div");
-  const userImg = document.createElement("img");
-  const cardInfo = document.createElement("div");
-  const Name = document.createElement("h3");
+  const img = document.createElement("img");
+  const info = document.createElement("div");
+  const name = document.createElement("h3");
   const username = document.createElement("p");
   const location = document.createElement("p");
   const profile = document.createElement("p");
@@ -44,6 +44,25 @@ function gitMaker(object) {
   const followers = document.createElement("p");
   const following = document.createElement("p");
   const bio = document.createElement("p");
+
+  card.append(img, info, name, username, location, profile, href, followers, following, bio);
+
+  card.classList.add("card");
+  info.classList.add("card-info");
+  name.classList.add("name");
+  username.classList.add("username");
+
+  img.src = URL("");
+
+  info.textContent = obj.info;
+  name.textContent = obj.name;
+  username.textContent = obj.username;
+  location.textContent = obj.location;
+  profile.textContent = obj.profile;
+  href.textContent = obj.href;
+  followers.textContent = obj.followers;
+  following.textContent = obj.following,
+  bio.textContent = obj.bio;
 
 }
 
