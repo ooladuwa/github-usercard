@@ -28,11 +28,20 @@ import axios from 'axios';
 
     Using that array, iterate over it, requesting data for each user, creating a new card for each
     user, and adding that card to the DOM.
+    
 */
 
-const followersArray = [];
+const followersArray = [
+  "ooladuwa",
+  "tetondan",
+  "dustinmyers",
+  "justsml",
+  "luishrd",
+  "bigknell",
+];
 
-function gitMaker(obj) {
+
+function cardMaker(obj) {
   const card = document.createElement("div");
   const img = document.createElement("img");
   const info = document.createElement("div");
@@ -52,20 +61,32 @@ function gitMaker(obj) {
   name.classList.add("name");
   username.classList.add("username");
 
-  img.src = URL("");
+  img.setAttribute("src", obj.avatar_url);
 
-  info.textContent = obj.info;
   name.textContent = obj.name;
-  username.textContent = obj.username;
+  username.textContent = obj.login;
   location.textContent = obj.location;
-  profile.textContent = obj.profile;
-  href.textContent = obj.href;
+  href.textContent = "follow me here"
+  href.setAttribute("href", obj.html_url)
+  profile.appendChild(href)
   followers.textContent = obj.followers;
   following.textContent = obj.following,
   bio.textContent = obj.bio;
 
+  return card;
 }
 
+const header = document.querySelector(".header");
+
+axios.get("https://api.github.com/users/ooladuwa")
+  .then((result) => {
+    const card = cardMaker(result.data);
+    header.appendChild(card);
+    })    
+  .catch((err) => {
+    console.log(err);
+  });
+  console.log(cardMaker(followersArray));
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
