@@ -1,3 +1,8 @@
+import axios from "axios";
+
+// const result = axios.get("https://api.github.com/users/ooladuwa");
+// console.log(result);
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
@@ -28,7 +33,78 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  "tetondan",
+  "dustinmyers",
+  "justsml",
+  "luishrd",
+  "bigknell",
+];
+
+function githubCardMaker(obj) {
+  // instantiating elements
+  const card = document.createElement("div");
+  const avatar_url = document.createElement("img");
+  const cardInfo = document.createElement("div");
+  const name = document.createElement("h3");
+  const login = document.createElement("p");
+  const location = document.createElement("p");
+  const profile = document.createElement("p");
+  const url = document.createElement("a");
+  const followers = document.createElement("p");
+  const following = document.createElement("p");
+  const bio = document.createElement("p");
+
+  // console.log(card);
+  // setting class names,
+  card.classList.add("card");
+  cardInfo.classList.add("card-info");
+  name.classList.add("name");
+  login.classList.add("username");
+  // attributes,
+  avatar_url.setAttribute("src", obj.avatar_url);
+  url.setAttribute("href", obj.url);
+  // text
+  name.textContent = obj.name;
+  login.textContent = obj.login;
+  location.textContent = obj.location;
+  url.textContent = "follow me here";
+  followers.textContent = obj.followers;
+  following.textContent = obj.following;
+  bio.textContent = obj.bio;
+
+  //creating the hierarchy
+  card.append(
+    avatar_url,
+    cardInfo,
+    name,
+    login,
+    location,
+    profile,
+    followers,
+    following,
+    bio
+  );
+  profile.appendChild(url);
+
+  //return card
+  return card;
+}
+
+const cards = document.querySelector(".cards");
+
+// cards.forEach((card) => {
+axios
+  .get("https://api.github.com/users/ooladuwa")
+  .then((result) => {
+    const card = githubCardMaker(result.data);
+    cards.appendChild(card);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+console.log(githubCardMaker(followersArray));
+// });
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
